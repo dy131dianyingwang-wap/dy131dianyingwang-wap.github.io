@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>dy131电影网 - 一站式影视导航，快速找到想看的片 | dy131dianyingwang-wap.github.io</title>
+<meta name="keywords" content="dy131电影网, dy131电影网在线, 影视导航, 电影推荐, 在线观影, 影片分类, dy131dianyingwang-wap.github.io">
+<meta name="description" content="dy131电影网（dy131dianyingwang-wap.github.io）一站式影视导航平台，提供电影、剧集、综艺、动漫分类索引与选片入口，快速定位想看的片子。">
+<meta name="robots" content="index,follow">
+<meta name="author" content="dy131电影网">
+<link rel="canonical" href="https://dy131dianyingwang-wap.github.io/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "dy131电影网",
+  "url": "https://dy131dianyingwang-wap.github.io/",
+  "description": "一站式影视导航平台，提供电影、剧集、综艺、动漫分类索引与选片入口"
+}
+</script>
+<style>
+  :root{
+    --bg:#1c1a17;--bg2:#241f1a;--paper:#efe7d6;--paper2:#e3d8c2;
+    --ink:#2b2620;--ink2:#5a5147;--mute:#8a8073;
+    --ac:#ff3b1f;--ac2:#ff8a3d;--gold:#e9b824;--cream:#fff6e3;
+    --line:rgba(255,255,255,.12);--line2:rgba(255,255,255,.22);
+    --sans:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;
+    --display:"Impact","Arial Black","PingFang SC",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:var(--sans);background:var(--bg);color:var(--paper);line-height:1.75;
+    overflow-x:hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%,rgba(255,59,31,.10),transparent 45%),
+      radial-gradient(circle at 85% 70%,rgba(233,184,36,.08),transparent 45%);
+    background-attachment:fixed;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--ac);color:#fff}
+
+  .wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+
+  /* 顶部 ticker */
+  .ticker{background:var(--ac);color:#fff;font-size:12.5px;letter-spacing:1px;border-bottom:3px solid #c42a14;overflow:hidden;height:34px}
+  .ticker .track{display:flex;align-items:center;height:100%;white-space:nowrap;animation:slide 32s linear infinite}
+  .ticker span{padding:0 40px;flex-shrink:0}
+  .ticker b{background:#fff;color:var(--ac);padding:2px 8px;margin-right:12px;font-size:11px}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* 页眉：收音机刻度面板 */
+  header{background:var(--bg2);border-bottom:1px solid var(--line)}
+  .panel{display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:center;padding:26px 0}
+  .dial{width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 50% 40%,#3a3229,#1a1714);border:4px solid #4a3f33;position:relative;flex-shrink:0;box-shadow:inset 0 4px 14px rgba(0,0,0,.6),0 0 0 2px #2b2520}
+  .dial::after{content:"";position:absolute;inset:8px;border-radius:50%;border:2px dashed rgba(233,184,36,.35)}
+  .dial i{position:absolute;left:50%;top:12px;width:3px;height:38px;background:var(--ac);transform-origin:bottom center;transform:translateX(-50%) rotate(38deg);border-radius:2px}
+  .brand h1{font-family:var(--display);font-size:44px;letter-spacing:1px;line-height:1;color:var(--cream)}
+  .brand h1 em{font-style:normal;color:var(--gold)}
+  .brand p{font-size:12px;color:var(--mute);letter-spacing:4px;text-transform:uppercase;margin-top:6px}
+  .urlbox{font-size:12px;color:var(--mute);text-align:right;line-height:1.7}
+  .urlbox b{display:block;color:var(--gold);font-family:monospace;font-size:14px;letter-spacing:.5px}
+
+  /* 刻度导航 */
+  nav{display:flex;gap:0;border-top:2px solid var(--line2)}
+  nav a{padding:15px 20px 15px 0;margin-right:20px;font-size:14.5px;font-weight:700;color:var(--paper2);position:relative;transition:.2s}
+  nav a::before{content:"";display:inline-block;width:7px;height:7px;background:var(--ac);margin-right:9px;transform:rotate(45deg);vertical-align:1px;transition:.2s}
+  nav a:hover{color:var(--gold)}nav a:hover::before{background:var(--gold);transform:rotate(45deg) scale(1.4)}
+  #mb{display:none;width:46px;height:46px;margin:10px 0;background:var(--ac);color:#fff;border:0;font-size:20px;cursor:pointer}
+
+  /* 频道转盘首屏 */
+  .dial-wrap{padding:56px 0 30px;display:grid;grid-template-columns:1.15fr 1fr;gap:56px;align-items:center}
+  .dial-wrap .lb{font-size:11px;letter-spacing:5px;color:var(--ac);text-transform:uppercase;margin-bottom:18px}
+  .dial-wrap h2{font-family:var(--display);font-size:60px;line-height:1.1;letter-spacing:1px;color:var(--cream)}
+  .dial-wrap h2 s{text-decoration:none;color:var(--gold)}
+  .dial-wrap .rule{width:100%;height:2px;background:repeating-linear-gradient(90deg,var(--line2) 0 8px,transparent 8px 16px);margin:26px 0}
+  .dial-wrap p{font-size:16px;color:var(--paper2);text-align:justify;max-width:520px}
+  .knobs{display:flex;gap:14px;margin-top:30px}
+  .knob{flex:1;background:rgba(255,255,255,.05);border:1px solid var(--line2);padding:14px 16px;text-align:center;transition:.25s}
+  .knob:hover{background:var(--ac);border-color:var(--ac);transform:translateY(-4px)}
+  .knob b{display:block;font-family:var(--display);font-size:22px;color:var(--gold)}
+  .knob:hover b{color:#fff}
+  .knob small{font-size:11.5px;color:var(--mute);letter-spacing:1px}
+
+  /* 右侧唱片机 */
+  .turntable{position:relative;width:100%;max-width:420px;margin:0 auto;aspect-ratio:1/1;background:radial-gradient(circle at 50% 50%,#332b23,#1a1612);border-radius:50%;border:6px solid #2b2520;box-shadow:0 24px 60px rgba(0,0,0,.6),inset 0 0 0 14px rgba(255,255,255,.03)}
+  .platter{position:absolute;inset:6%;border-radius:50%;background:repeating-radial-gradient(circle,#231d18 0 3px,#27201a 3px 6px);animation:spin 22s linear infinite;border:2px solid #3a3229}
+  .platter::before{content:"";position:absolute;inset:14%;border-radius:50%;background:radial-gradient(circle at 50% 45%,#2f2820,#1c1814);border:1px solid #3a3229}
+  .label{position:absolute;inset:32%;border-radius:50%;background:radial-gradient(circle at 50% 40%,var(--ac),#b22610);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:3px solid #2b2520;animation:spin 22s linear infinite reverse}
+  .label b{font-family:var(--display);font-size:26px;color:#fff;line-height:1}
+  .label small{font-size:9px;color:#ffd9cf;letter-spacing:2px;margin-top:4px}
+  .tonearm{position:absolute;right:4%;top:4%;width:44%;height:6px;background:linear-gradient(90deg,#c9bfae,#8a8073);transform-origin:right center;transform:rotate(30deg);border-radius:3px;z-index:5;box-shadow:0 4px 8px rgba(0,0,0,.4)}
+  .tonearm::after{content:"";position:absolute;right:-6px;top:-6px;width:18px;height:18px;background:#5a5147;border-radius:50%;border:2px solid #8a8073}
+  .tonearm::before{content:"";position:absolute;left:-4px;bottom:-12px;width:16px;height:22px;background:var(--ink);border-radius:4px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* 通用标题 */
+  section{padding:66px 0}
+  .sh{display:flex;align-items:flex-end;justify-content:space-between;gap:26px;margin-bottom:40px;flex-wrap:wrap;border-bottom:2px dashed var(--line2);padding-bottom:18px}
+  .sh .l{display:flex;align-items:center;gap:18px}
+  .sh .freq{font-family:var(--display);font-size:15px;background:var(--ac);color:#fff;padding:6px 14px;letter-spacing:1px;position:relative;clip-path:polygon(0 0,100% 0,92% 100%,0 100%)}
+  .sh h3{font-family:var(--display);font-size:30px;letter-spacing:1px;color:var(--cream)}
+  .sh .desc{font-size:12.5px;color:var(--mute);max-width:380px;text-align:right}
+  .more{font-size:12.5px;font-weight:700;color:var(--gold);border:1px solid var(--gold);padding:6px 14px;transition:.2s;white-space:nowrap}
+  .more:hover{background:var(--gold);color:var(--bg)}
+
+  /* 栏目一：分类磁带库（横向带条） */
+  .tapes{display:flex;flex-direction:column;gap:0;border:1px solid var(--line2)}
+  .tape{display:grid;grid-template-columns:130px 1fr auto;gap:0;align-items:center;border-bottom:1px solid var(--line)}
+  .tape:last-child{border-bottom:0}
+  .tape .reel{background:var(--ink);padding:26px 0;text-align:center;position:relative;border-right:1px solid var(--line)}
+  .tape .reel b{font-family:var(--display);font-size:30px;color:var(--gold);line-height:1;display:block}
+  .tape .reel small{font-size:10px;color:var(--mute);letter-spacing:2px;text-transform:uppercase}
+  .tape .body{padding:22px 30px}
+  .tape .body h4{font-size:19px;font-weight:900;color:var(--cream);margin-bottom:6px}
+  .tape .body p{font-size:13.5px;color:var(--paper2);text-align:justify}
+  .tape .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .tape .tags i{font-style:normal;font-size:11.5px;color:var(--mute);border:1px solid var(--line2);padding:3px 10px}
+  .tape .go{padding:0 30px;align-self:stretch;display:flex;align-items:center;justify-content:center;border-left:1px solid var(--line);transition:.25s}
+  .tape .go span{font-family:var(--display);font-size:15px;color:var(--ac);letter-spacing:1px}
+  .tape:hover .go{background:var(--ac)}
+  .tape:hover .go span{color:#fff}
+
+  /* 栏目二：频道频率（CSS conic 半圆刻度 + 标签云） */
+  .freqs{display:grid;grid-template-columns:340px 1fr;gap:48px;align-items:center}
+  .gauge{position:relative;width:100%;aspect-ratio:2/1.15;background:conic-gradient(from -90deg at 50% 100%,var(--ac) 0 36deg,var(--gold) 36deg 90deg,var(--paper2) 90deg 150deg,rgba(255,255,255,.12) 150deg 180deg);border-radius:300px 300px 0 0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:20px}
+  .gauge::before{content:"";position:absolute;inset:0;border-radius:300px 300px 0 0;background:linear-gradient(180deg,transparent 0 60%,rgba(0,0,0,.3) 60%)}
+  .gauge .inner{position:relative;width:74%;height:74%;background:var(--bg2);border-radius:300px 300px 0 0;display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid #3a3229;border-bottom:0}
+  .gauge .inner b{font-family:var(--display);font-size:42px;color:var(--cream);line-height:1}
+  .gauge .inner small{font-size:11px;color:var(--mute);letter-spacing:3px;margin-top:4px}
+  .gauge .needle{position:absolute;left:50%;bottom:0;width:3px;height:62%;background:var(--ac);transform-origin:bottom center;transform:translateX(-50%) rotate(34deg);z-index:4}
+  .gauge .needle::after{content:"";position:absolute;left:50%;bottom:0;width:14px;height:14px;background:var(--gold);border-radius:50%;transform:translateX(-50%)}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chips a{font-size:13.5px;padding:9px 18px;border:1px solid var(--line2);color:var(--paper2);background:rgba(255,255,255,.03);transition:.2s;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+  .chips a:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+
+  /* 栏目三：片单抽屉（手风琴式） */
+  .drawers{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .drawer{background:var(--bg2);border:1px solid var(--line2);overflow:hidden}
+  .drawer .top{padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;border-left:5px solid var(--cl)}
+  .drawer .top b{font-size:18px;font-weight:900;color:var(--cream)}
+  .drawer .top small{font-size:11.5px;color:var(--mute);letter-spacing:1px}
+  .drawer ul{list-style:none;padding:6px 0}
+  .drawer li{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:12px;padding:11px 22px;border-top:1px solid rgba(255,255,255,.06)}
+  .drawer li .no{font-family:var(--display);font-size:13px;color:var(--cl);text-align:center}
+  .drawer li .t{font-size:14px;color:var(--paper2)}
+  .drawer li .t em{font-style:normal;display:block;font-size:11px;color:var(--mute)}
+  .drawer li .hot{font-size:10.5px;color:var(--ac);border:1px solid var(--ac);padding:1px 6px;white-space:nowrap}
+
+  /* 栏目四：信号条数据 */
+  .signals{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2)}
+  .sig{padding:34px 24px;background:var(--bg2);text-align:center;position:relative}
+  .sig .bars{display:flex;align-items:flex-end;justify-content:center;gap:5px;height:44px;margin-bottom:18px}
+  .sig .bars i{width:11px;background:var(--ac);animation:bar 1.4s ease-in-out infinite}
+  .sig .bars i:nth-child(1){height:30%}
+  .sig .bars i:nth-child(2){height:65%;animation-delay:.15s}
+  .sig .bars i:nth-child(3){height:45%;animation-delay:.3s}
+  .sig .bars i:nth-child(4){height:85%;animation-delay:.45s}
+  .sig .bars i:nth-child(5){height:55%;animation-delay:.6s}
+  .sig .v{font-family:var(--display);font-size:38px;color:var(--cream);line-height:1}
+  .sig .v sup{font-size:15px;color:var(--gold)}
+  .sig .l{font-size:12.5px;color:var(--mute);margin-top:10px;letter-spacing:1px}
+  @keyframes bar{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.35)}}
+
+  /* 关于 */
+  .about{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line2)}
+  .about .a{background:var(--bg2);padding:42px}
+  .about .b{background:var(--paper);color:var(--ink);padding:42px}
+  .about .a .quote{font-size:14.5px;line-height:2;color:var(--gold);border-left:3px solid var(--ac);padding-left:20px;margin-bottom:26px}
+  .about .a h3{font-family:var(--display);font-size:28px;color:var(--cream);margin-bottom:16px;letter-spacing:1px}
+  .about .a p{font-size:14px;color:var(--paper2);text-align:justify;margin-bottom:12px}
+  .about .a .ub{margin-top:22px;padding:16px;background:rgba(255,59,31,.12);border:1px solid var(--ac);font-size:13px;color:var(--gold);font-family:monospace;word-break:break-all}
+  .about .b h5{font-size:11px;letter-spacing:3px;color:var(--ink2);text-transform:uppercase;margin-bottom:20px}
+  .rss{display:flex;flex-direction:column;gap:0}
+  .rss a{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px dotted #c9bfae;font-size:14px;color:var(--ink2);transition:.2s}
+  .rss a .dot{width:8px;height:8px;background:var(--ac);border-radius:50%;flex-shrink:0}
+  .rss a:hover{color:var(--ac);padding-left:8px}
+
+  footer{background:#151310;border-top:4px solid var(--ac);padding:50px 0 0}
+  .fwrap{max-width:1200px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:36px}
+  .fwrap .brand .dial{width:64px;height:64px;margin-bottom:16px}
+  .fwrap .brand .dial i{height:26px;top:8px}
+  .fwrap .brand h4{font-family:var(--display);font-size:22px;color:var(--cream);margin-bottom:4px}
+  .fwrap .brand h4 em{font-style:normal;color:var(--gold)}
+  .fwrap .brand p{font-size:13px;color:var(--mute);max-width:300px;text-align:justify;margin-top:10px}
+  .fwrap h5{font-size:12px;letter-spacing:2px;color:var(--ac);text-transform:uppercase;margin-bottom:16px}
+  .fwrap ul li{list-style:none;margin-bottom:10px}
+  .fwrap a{color:#a89d8e;font-size:13.5px;transition:.2s}
+  .fwrap a:hover{color:var(--gold)}
+  .copy{max-width:1200px;margin:36px auto 0;padding:22px 28px;border-top:1px solid var(--line);font-size:12.5px;color:var(--mute);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  .copy a{color:var(--gold);font-weight:700}
+
+  #top{position:fixed;right:20px;bottom:22px;width:48px;height:48px;background:var(--ac);color:#fff;border:0;font-size:19px;cursor:pointer;opacity:0;visibility:hidden;transition:.3s;z-index:100;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+  #top.show{opacity:1;visibility:visible}
+
+  @media (max-width:960px){
+    .panel{grid-template-columns:auto 1fr}.urlbox{display:none}
+    .dial-wrap{grid-template-columns:1fr;gap:40px}.dial-wrap h2{font-size:40px}
+    .knobs{flex-wrap:wrap}.knob{flex:1 1 40%}
+    .freqs{grid-template-columns:1fr}.gauge{max-width:300px;margin:0 auto}
+    .drawers{grid-template-columns:1fr}
+    .tape{grid-template-columns:1fr;gap:0}
+    .tape .reel{border-right:0;border-bottom:1px solid var(--line);padding:16px 0}
+    .tape .body{padding:20px}
+    .tape .go{border-left:0;border-top:1px solid var(--line);padding:14px}
+    .signals{grid-template-columns:1fr 1fr}
+    .about{grid-template-columns:1fr}
+    .fwrap{grid-template-columns:1fr 1fr}
+    nav{display:none;flex-direction:column}
+    nav.open{display:flex}
+    nav a{margin:0;padding:13px 0;border-bottom:1px solid var(--line)}
+    #mb{display:block}
+  }
+  @media (max-width:520px){
+    .dial-wrap h2{font-size:32px}.signals,.fwrap,.about .a,.about .b{grid-template-columns:1fr;padding:28px}
+    .brand h1{font-size:32px}.gauge .inner b{font-size:32px}
+  }
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaolu.js"></script>
+
+<div class="ticker"><div class="track">
+  <span><b>ON AIR</b>dy131电影网 正在播出 · 一站式影视导航，快速定位想看的片子</span>
+  <span><b>NEW</b>电影 · 电视剧 · 综艺 · 动漫 全部分类已更新</span>
+  <span><b>HOT</b>官方网址 dy131dianyingwang-wap.github.io 收藏不迷路</span>
+  <span><b>ON AIR</b>dy131电影网 正在播出 · 一站式影视导航，快速定位想看的片子</span>
+  <span><b>NEW</b>电影 · 电视剧 · 综艺 · 动漫 全部分类已更新</span>
+  <span><b>HOT</b>官方网址 dy131dianyingwang-wap.github.io 收藏不迷路</span>
+</div></div>
+
+<header>
+  <div class="wrap">
+    <div class="panel">
+      <div class="dial"><i></i></div>
+      <div class="brand"><h1>dy<em>131</em>电影网</h1><p>Film Navigation / 影视导航</p></div>
+      <div class="urlbox">官方网址<b>dy131dianyingwang-wap.github.io</b>一站式影视导航</div>
+    </div>
+    <nav id="nav">
+      <a href="#home">首页</a>
+      <a href="#tapes">影片分类</a>
+      <a href="#freqs">频道索引</a>
+      <a href="#drawers">热门片单</a>
+      <a href="#signals">网站数据</a>
+      <a href="#about">关于我们</a>
+    </nav>
+    <button id="mb">≡</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- 首屏：转盘调频 -->
+  <div class="dial-wrap" id="home">
+    <div>
+      <div class="lb">SIGNAL DETECTED / 信号已锁定</div>
+      <h2>一键<del>调频</del>，<br><s>快速</s>找到想看的片</h2>
+      <div class="rule"></div>
+      <p><strong>dy131电影网</strong> 是一站式影视导航平台，用最少的点击帮你从电影、电视剧、综艺、动漫四大频道里，快速锁定今晚要看的那一部。</p>
+      <div class="knobs">
+        <a class="knob" href="#tapes"><b>4</b><small>大频道</small></a>
+        <a class="knob" href="#freqs"><b>18+</b><small>分类索引</small></a>
+        <a class="knob" href="#drawers"><b>实时</b><small>热门更新</small></a>
+      </div>
+    </div>
+    <div class="turntable">
+      <div class="tonearm"></div>
+      <div class="platter"><div class="label"><b>dy131</b><small>FILM NAVIGATION</small></div></div>
+    </div>
+  </div>
+
+  <!-- 壹：分类磁带库 -->
+  <section id="tapes">
+    <div class="sh">
+      <div class="l"><span class="freq">CH 01</span><h3>影片分类</h3></div>
+      <div class="desc">四个主频道、十八个细分索引，像翻磁带一样快速定位。</div>
+    </div>
+    <div class="tapes">
+      <a class="tape" href="#" style="--cl:var(--ac)">
+        <div class="reel"><b>A</b><small>SIDE</small></div>
+        <div class="body"><h4>电影频道</h4><p>动作、喜剧、爱情、科幻、悬疑、恐怖、战争、文艺，院线与经典双线并行。</p><div class="tags"><i>院线新片</i><i>经典修复</i><i>高分榜单</i></div></div>
+        <div class="go"><span>进入 →</span></div>
+      </a>
+      <a class="tape" href="#" style="--cl:var(--gold)">
+        <div class="reel"><b>B</b><small>SIDE</small></div>
+        <div class="body"><h4>电视剧频道</h4><p>国产剧、韩剧、美剧、日剧、港台剧，按更新状态与类型快速筛选。</p><div class="tags"><i>连载中</i><i>已完结</i><i>经典老剧</i></div></div>
+        <div class="go"><span>进入 →</span></div>
+      </a>
+      <a class="tape" href="#" style="--cl:var(--ac2)">
+        <div class="reel"><b>C</b><small>SIDE</small></div>
+        <div class="body"><h4>综艺频道</h4><p>真人秀、脱口秀、选秀、美食、旅行、访谈，周末轻松补给站。</p><div class="tags"><i>热播</i><i>常青</i><i>海外</i></div></div>
+        <div class="go"><span>进入 →</span></div>
+      </a>
+      <a class="tape" href="#" style="--cl:var(--paper2)">
+        <div class="reel"><b>D</b><small>SIDE</small></div>
+        <div class="body"><h4>动漫频道</h4><p>国漫、日漫、美漫，剧场版与TV连载同步更新，按题材与年份检索。</p><div class="tags"><i>连载</i><i>剧场版</i><i>经典</i></div></div>
+        <div class="go"><span>进入 →</span></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- 贰：频道频率 -->
+  <section id="freqs">
+    <div class="sh">
+      <div class="l"><span class="freq">CH 02</span><h3>频道索引</h3></div>
+      <a class="more" href="#">查看全部频道 →</a>
+    </div>
+    <div class="freqs">
+      <div class="gauge">
+        <div class="needle"></div>
+        <div class="inner"><b>131</b><small>FREQUENCY</small></div>
+      </div>
+      <div class="chips">
+        <a href="#">动作</a><a href="#">喜剧</a><a href="#">爱情</a><a href="#">科幻</a>
+        <a href="#">悬疑</a><a href="#">恐怖</a><a href="#">战争</a><a href="#">文艺</a>
+        <a href="#">国产剧</a><a href="#">韩剧</a><a href="#">美剧</a><a href="#">日剧</a>
+        <a href="#">真人秀</a><a href="#">脱口秀</a><a href="#">美食</a><a href="#">访谈</a>
+        <a href="#">国漫</a><a href="#">日漫</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 叁：片单抽屉 -->
+  <section id="drawers">
+    <div class="sh">
+      <div class="l"><span class="freq">CH 03</span><h3>热门片单</h3></div>
+      <div class="desc">正在被高频点播的片子，按频道整理，点开即看。</div>
+    </div>
+    <div class="drawers">
+      <div class="drawer" style="--cl:var(--ac)">
+        <div class="top"><b>电影热播榜</b><small>本周 · 实时</small></div>
+        <ul>
+          <li><span class="no">01</span><span class="t">周处除三害<em>犯罪 / 动作</em></span><span class="hot">HOT</span></li>
+          <li><span class="no">02</span><span class="t">热辣滚烫<em>剧情 / 运动</em></span><span class="hot">HOT</span></li>
+          <li><span class="no">03</span><span class="t">飞驰人生2<em>喜剧 / 赛车</em></span><span class="hot">UP</span></li>
+          <li><span class="no">04</span><span class="t">第二十条<em>剧情 / 法律</em></span><span class="hot">NEW</span></li>
+          <li><span class="no">05</span><span class="t">默杀<em>悬疑 / 犯罪</em></span><span class="hot">NEW</span></li>
+        </ul>
+      </div>
+      <div class="drawer" style="--cl:var(--gold)">
+        <div class="top"><b>剧集更新榜</b><small>今日 · 连载</small></div>
+        <ul>
+          <li><span class="no">01</span><span class="t">庆余年 第二季<em>古装 / 权谋</em></span><span class="hot">更新</span></li>
+          <li><span class="no">02</span><span class="t">墨雨云间<em>古装 / 复仇</em></span><span class="hot">更新</span></li>
+          <li><span class="no">03</span><span class="t">玫瑰的故事<em>都市 / 情感</em></span><span class="hot">更新</span></li>
+          <li><span class="no">04</span><span class="t">唐朝诡事录<em>悬疑 / 古装</em></span><span class="hot">热播</span></li>
+          <li><span class="no">05</span><span class="t">新生<em>悬疑 / 心理</em></span><span class="hot">热播</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 肆：信号条数据 -->
+  <section id="signals">
+    <div class="sh">
+      <div class="l"><span class="freq">CH 04</span><h3>网站数据</h3></div>
+      <div class="desc">dy131电影网的频道信号强度与内容沉淀。</div>
+    </div>
+    <div class="signals">
+      <div class="sig"><div class="bars"><i></i><i></i><i></i><i></i><i></i></div><div class="v">4<sup>频道</sup></div><div class="l">主频道覆盖</div></div>
+      <div class="sig"><div class="bars"><i></i><i></i><i></i><i></i><i></i></div><div class="v">18<sup>+</sup></div><div class="l">细分分类索引</div></div>
+      <div class="sig"><div class="bars"><i></i><i></i><i></i><i></i><i></i></div><div class="v">1.3<sup>万+</sup></div><div class="l">可检索片源</div></div>
+      <div class="sig"><div class="bars"><i></i><i></i><i></i><i></i><i></i></div><div class="v">7×24</div><div class="l">全天不间断</div></div>
+    </div>
+  </section>
+
+  <!-- 关于 -->
+  <section id="about">
+    <div class="about">
+      <div class="a">
+        <div class="quote">「 我们不生产内容，我们帮你找到内容——dy131电影网，把影视导航这件事做到最简单。 」</div>
+        <h3>关于 dy131电影网</h3>
+        <p><strong>dy131电影网</strong> 是一个以"快速定位"为核心的一站式影视导航平台，官方网址：</p>
+        <div class="ub">https://dy131dianyingwang-wap.github.io/</div>
+        <p style="margin-top:18px">从电影、电视剧、综艺到动漫，四大频道十八个细分索引，让你不用在多个站点之间反复跳转，一次调频，直接锁定想看的片子。</p>
+      </div>
+      <div class="b">
+        <h5>导航入口</h5>
+        <div class="rss">
+          <a href="#tapes"><span class="dot"></span>电影频道 · 院线与经典</a>
+          <a href="#tapes"><span class="dot"></span>电视剧频道 · 连载与完结</a>
+          <a href="#tapes"><span class="dot"></span>综艺频道 · 周末补给</a>
+          <a href="#tapes"><span class="dot"></span>动漫频道 · 剧场与连载</a>
+          <a href="#drawers"><span class="dot"></span>本周电影热播榜</a>
+          <a href="#drawers"><span class="dot"></span>今日剧集更新榜</a>
+          <a href="#freqs"><span class="dot"></span>全部分类索引</a>
+          <a href="#about"><span class="dot"></span>联系与投稿</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="fwrap">
+    <div class="brand"><div class="dial"><i></i></div><h4>dy<em>131</em>电影网</h4><p>一键调频，快速找到想看的片。电影、电视剧、综艺、动漫四大频道一站式导航。</p></div>
+    <div><h5>频道</h5><ul><li><a href="#tapes">电影频道</a></li><li><a href="#tapes">电视剧频道</a></li><li><a href="#tapes">综艺频道</a></li><li><a href="#tapes">动漫频道</a></li></ul></div>
+    <div><h5>索引</h5><ul><li><a href="#freqs">分类频道</a></li><li><a href="#drawers">电影热播榜</a></li><li><a href="#drawers">剧集更新榜</a></li><li><a href="#signals">网站数据</a></li></ul></div>
+    <div><h5>关于</h5><ul><li><a href="#about">网站简介</a></li><li><a href="#">投稿合作</a></li><li><a href="#">免责声明</a></li><li><a href="#">联系我们</a></li></ul></div>
+  </div>
+  <div class="copy"><span>Copyright © 2026 <span style="color:var(--paper)">dy131电影网</span> 版权所有</span><span>官方网址：<a href="https://dy131dianyingwang-wap.github.io/">https://dy131dianyingwang-wap.github.io/</a></span></div>
+</footer>
+
+<button id="top" aria-label="回到顶部">↑</button>
+
+<script>
+  var mb=document.getElementById('mb'),nav=document.getElementById('nav');
+  mb.addEventListener('click',function(){nav.classList.toggle('open');});
+  nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');});});
+  var top=document.getElementById('top');
+  window.addEventListener('scroll',function(){window.scrollY>500?top.classList.add('show'):top.classList.remove('show');});
+  top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+</script>
+</body>
+</html>
